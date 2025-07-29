@@ -4,33 +4,38 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
-interface Theme {
-  colors: {
-    accent: string;
-    active: string;
-  };
-}
+type FFATItem = {
+  path: string;
+  labelKey: string;
+};
 
-export function FFATNav({ theme }: { theme: Theme }) {
+const navItems: FFATItem[] = [
+  { path: '/frequency/global', labelKey: 'ffat.frequency1' },
+  { path: '/frequency/local', labelKey: 'ffat.frequency2' },
+  { path: '/amplitude', labelKey: 'ffat.amplitude' },
+  { path: '/profile', labelKey: 'ffat.traegheit' },
+];
+
+export function FFATNav({ theme }: { theme: { colors: { accent: string; active: string } } }) {
   const pathname = usePathname();
   const t = useTranslations('common');
 
-  const isActive = (path: string) => pathname === path ? 'text-white font-bold' : 'text-gray-400';
-
   return (
-    <nav className="w-full flex justify-around py-4" style={{ backgroundColor: theme.colors.accent }}>
-      <Link href="/frequency/global" className={isActive('/frequency/global')}>
-        {t('ffat.frequency1')}
-      </Link>
-      <Link href="/frequency/local" className={isActive('/frequency/local')}>
-        {t('ffat.frequency2')}
-      </Link>
-      <Link href="/amplitude" className={isActive('/amplitude')}>
-        {t('ffat.amplitude')}
-      </Link>
-      <Link href="/profile" className={isActive('/profile')}>
-        {t('ffat.traegheit')}
-      </Link>
+    <nav
+      className="w-full flex justify-around py-4 transition-all duration-300"
+      style={{ backgroundColor: theme.colors.accent }}
+    >
+      {navItems.map(({ path, labelKey }) => (
+        <Link
+          key={path}
+          href={path}
+          className={`px-4 py-2 rounded-md transition-colors duration-200 ${
+            pathname === path ? 'font-bold text-white' : 'text-gray-300 hover:text-white'
+          }`}
+        >
+          {t(labelKey)}
+        </Link>
+      ))}
     </nav>
   );
 }
