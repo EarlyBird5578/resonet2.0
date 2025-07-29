@@ -1,0 +1,7 @@
+{
+  "welcome": "Welcome to ReSonet",
+  "ffat.frequency1": "Frequency (global)",
+  "ffat.frequency2": "Frequency (local)",
+  "ffat.amplitude": "Amplitude (filtered)",
+  "ffat.traegheit": "Inertia (yourself)"
+}

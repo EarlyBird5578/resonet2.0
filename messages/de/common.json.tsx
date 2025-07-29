@@ -1,0 +1,7 @@
+{
+  "welcome": "Willkommen bei ReSonet",
+  "ffat.frequency1": "Frequenz (weltweit)",
+  "ffat.frequency2": "Frequenz (Umkreis)",
+  "ffat.amplitude": "Amplitude (gefiltert)",
+  "ffat.traegheit": "Trägheit (du selbst)"
+}
